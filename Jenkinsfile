@@ -6,7 +6,7 @@ node {
 
     stage('Build image') {
     /* This builds the actual image */
-    app = docker.build("nginx:v1")
+    app = docker.build("nginx:latest")
   }
     stage('Deploy Nginx ') {
     /* This will deploy nginx image using Kubernetes*/
