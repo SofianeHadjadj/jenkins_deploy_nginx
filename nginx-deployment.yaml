@@ -10,7 +10,7 @@ spec:
     spec:
       containers:
       - name: nginx-site
-        image: nginx:v1
+        image: nginx:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 80
