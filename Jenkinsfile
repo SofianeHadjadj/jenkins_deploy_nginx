@@ -13,7 +13,7 @@ node {
                 string(credentialsId: 'token_kubectl', variable: 'TOKEN'),
                 string(credentialsId: 'server_bubectl', variable: 'SERVER')
             ]) {
-            sh "kubectl apply -f nginx-deployment.yaml --token $TOKEN --server $SERVER"
+            sh "kubectl apply -f nginx-deployment.yaml --token $TOKEN --server apiserver.hostname.local"
         }
     }
     stage('Deploy Nginx Step 2') {
@@ -21,7 +21,7 @@ node {
                 string(credentialsId: 'token_kubectl', variable: 'TOKEN'),
                 string(credentialsId: 'server_bubectl', variable: 'SERVER')
             ]) {
-            sh "kubectl apply -f nginx-service.yaml --token $TOKEN --server $SERVER"
+            sh "kubectl apply -f nginx-service.yaml --token $TOKEN --server apiserver.hostname.local"
         }
     }    
 }
