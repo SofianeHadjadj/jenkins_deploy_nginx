@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Deployment
+metadata:
+  name: nginx-site
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nginx-site
+    spec:
+      containers:
+      - name: nginx-site
+        image: nginx:v1
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
