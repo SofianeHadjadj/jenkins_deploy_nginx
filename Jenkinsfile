@@ -9,14 +9,19 @@ node {
         app = docker.build("nginx:latest")
   }
     stage('Deploy Nginx Step 1') {
-    /* This will deploy nginx image using Kubernetes*/
-        //steps {
-        sh "kubectl apply -f nginx-deployment.yaml"
-        //}
+        withCredentials([
+                string(credentialsId: 'token_kubectl', variable: 'TOKEN'),
+                string(credentialsId: 'server_bubectl', variable: 'SERVER')
+            ]) {
+            sh "kubectl apply -f nginx-deployment.yaml --token $TOKEN --server $SERVER"
+        }
     }
     stage('Deploy Nginx Step 2') {
-        //steps {
-        sh "kubectl apply -f nginx-service.yaml"
-        //}
+        withCredentials([
+                string(credentialsId: 'token_kubectl', variable: 'TOKEN'),
+                string(credentialsId: 'server_bubectl', variable: 'SERVER')
+            ]) {
+            sh "kubectl apply -f nginx-service.yaml --token $TOKEN --server $SERVER"
+        }
     }    
 }
